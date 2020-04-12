@@ -21,8 +21,8 @@ export default function App() {
     const repository = response.data;
 
     
-      const indexInRepositories = repositories.map(repositoryObj => 
-        repositoryObj.id).indexOf(repository.id);
+      const indexInRepositories = repositories.findIndex(repositoryObj => 
+        repositoryObj.id) === repository.id;
         //Atualiza o objeto antigo.
       if (indexInRepositories >= 0) 
           repositories.splice(indexInRepositories, 1, repository);
