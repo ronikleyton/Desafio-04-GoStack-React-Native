@@ -19,16 +19,16 @@ export default function App() {
     const response = await api.post(`repositories/${id}/like`);
 
     const repository = response.data;
-
+    const auxRepositories = repositories;
     
-      const indexInRepositories = repositories.findIndex(repositoryObj => 
-        repositoryObj.id) === repository.id;
+      const indexInRepositories = auxRepositories.map(repositoryObj => 
+        repositoryObj.id).indexOf(repository.id);
         //Atualiza o objeto antigo.
-      if (indexInRepositories >= 0) 
-          repositories.splice(indexInRepositories, 1, repository);
+      if (indexInRepositories !== undefined) 
+        auxRepositories.splice(indexInRepositories, 1, repository);
    
    
-    setRepositories([...repositories])
+    setRepositories([...auxRepositories])
 
   }
 
